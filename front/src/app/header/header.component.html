@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Pat'appart</span>
+    <span class="example-spacer"></span>
+    <a mat-button routerLink="/home">Accueil</a>
+    <button mat-button [matMenuTriggerFor]="belowMenu">Locations</button>
+    <mat-menu #belowMenu="matMenu" xPosition="after">
+      <button mat-menu-item>Rechercher un hébergement</button>
+      <button mat-menu-item>Proposer une offre</button>
+    </mat-menu>
+    <a mat-button routerLink="/">Petsitters</a>
+    <a mat-button routerLink="/">Contact</a>
+
+  </mat-toolbar-row>
+</mat-toolbar>
