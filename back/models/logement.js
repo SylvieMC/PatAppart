@@ -11,12 +11,12 @@ module.exports = function(sequelize , DataTypes){
           type: DataTypes.TEXT,
           allowNull: false
         },
-        addresse: {
+        adresse: {
           type: DataTypes.STRING,
           allowNull: false
         },
-        code_postal: {
-            type: DataTypes.INTEGER,
+          code_postal: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         departement: {

@@ -1,5 +1,7 @@
 const ModelIndex = require('../models');
 const Logement = ModelIndex.Logement;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const LogementController = function() {};
 
@@ -42,7 +44,7 @@ LogementController.updateLogement = function(idLogement, newLogementname, newPas
 
   Logement.updateAttributes({
     description: newDescription,
-    addresse: newAddresse,
+    adresse: newAdresse,
     code_postal: newCodePostal,
     departement: newDepartement,
     date_debut: newDateDebut,
@@ -54,7 +56,7 @@ LogementController.updateLogement = function(idLogement, newLogementname, newPas
 };
 
 LogementController.getLogementById = function(LogementId){
-  return Logement.find({
+  return Logement.findOne({
     where: {
       id: LogementId
     }
@@ -68,7 +70,24 @@ LogementController.getLogementById = function(LogementId){
   });
 };
 
+LogementController.findByCodePostal = function(codepostal){
+  return Logement.findOne({
+    where: {
+      code_postal: {
+        [Op.like]: codepostal + '%'
+      },
+    }
+  })
+  .then((Logement) => {
+    console.log('Logement trouvé');
+    return Logement;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+};
 LogementController.getAllLogement = function(){
+   console.log('ok');
   return Logement.findAll()
   .catch((err) => {
     console.error(err);

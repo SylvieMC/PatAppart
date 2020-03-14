@@ -7,45 +7,40 @@ const jwt = require('jsonwebtoken');
 const logementRouter = express.Router();
 logementRouter.use(bodyParser.json());
 
-
+/**
+ * Create a Logement.
+ */
 logementRouter.post('/', function(req, res) {
-  const addresse = req.body.addresse;
+  const adresse = req.body.adresse;
   const description = req.body.description;
-  if(addresse === undefined || description === undefined) {
+  const code_postal = req.body.code_postal;
+  const departement = req.body.departement;
+  const date_debut = req.body.date_debut;
+  const date_fin = req.body.date_fin;
+  const photo_url = req.body.photo_url;
+  if(adresse === undefined || description === undefined) {
     res.status(400).end();
     return;
   }
-  const menu = LogementController.add(addresse, description)
-  .then((menu) =>{
-    res.status(201).json(menu);
-  })
-  .catch((err) => {
-    res.status(500).end();
-  })
-
-});
-
-logementRouter.get('/Logement/:idLogement' , function(req,res){
-  const id = req.params.idLogement;
-  if(id === undefined ){
-    res.status(403).end();
-    return;
-  }
-  LogementController.getMenuById(id)
-  .then((menu) =>{
-    res.status(201).json(menu);
+  const logement = LogementController.addLogement(adresse, description, code_postal, departement, date_debut, date_fin, photo_url)
+  .then((logement) =>{
+    console.log(logement);
+    res.status(201).json(logement);
   })
   .catch((err) => {
     console.error(err);
     res.status(500).end();
   })
+
 });
 
-
-logementRouter.get('/all',function(req,res){
-    LogementController.getAll()
-    .then((menus) =>{
-      res.status(201).json(menus);
+/**
+ * Get all Logements
+ */
+logementRouter.get('/',function(req,res){
+    LogementController.getAllLogement()
+    .then((logements) =>{
+      res.status(200).json(logements);
     })
     .catch((err) =>{
       console.error(err);
@@ -53,7 +48,11 @@ logementRouter.get('/all',function(req,res){
     })
 });
 
-logementRouter.get('/allLogement/:idLogement' , function(req,res){
+/**
+ * Get Logement by Id
+ */
+
+logementRouter.get('/:idLogement' , function(req,res){
 
   const idLogement = req.params.idLogement;
 
@@ -62,7 +61,7 @@ logementRouter.get('/allLogement/:idLogement' , function(req,res){
     return;
   }
 
-  LogementController.getLogement(idLogement)
+  LogementController.getLogementById(idLogement)
   .then((products) =>{
     res.status(200).json(products);
   })
@@ -71,18 +70,20 @@ logementRouter.get('/allLogement/:idLogement' , function(req,res){
   });
 
 });
+/**
+ * get Logement by code postal
+ */
+logementRouter.get('/codepostal/:codepostal' , function(req,res){
 
-logementRouter.get('/name/:name' , function(req,res){
-
-  const name = req.params.name;
-  if(name === undefined ){
+  const codepostal = req.params.codepostal;
+  if(codepostal === undefined ){
     res.status(403).end();
     return;
   }
 
-  LogementController.getByName(req.params.name)
-  .then((menu) => {
-    res.status(201).json(menu);
+  LogementController.findByCodePostal(req.params.codepostal)
+  .then((logement) => {
+    res.status(200).json(logement);
   })
   .catch((err) =>{
     console.error(err);
