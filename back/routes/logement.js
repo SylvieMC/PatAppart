@@ -62,8 +62,8 @@ logementRouter.get('/:idLogement' , function(req,res){
   }
 
   LogementController.getLogementById(idLogement)
-  .then((products) =>{
-    res.status(200).json(products);
+  .then((logement) =>{
+    res.status(200).json(logement);
   })
   .catch((err)=>{
     console.error(err);
@@ -90,55 +90,6 @@ logementRouter.get('/codepostal/:codepostal' , function(req,res){
     res.status(500).end();
   })
 });
-
-/*menuRouter.post('/addProduct/:idProduct/:idMenu' , function(req,res){
-  jwt.verify(req.token, 'secretkey', (err) =>{
-    if(err){
-      res.status(403).end('Accès refusé');
-      return;
-        }else{
-      const idProduct = parseInt(req.params.idProduct);
-      const idMenu = parseInt(req.params.idMenu);
-
-      if(idProduct === undefined || idMenu === undefined ){
-          res.status(403).end();
-        return;
-      }
-
-      MenuController.addProduct(idMenu,idProduct)
-      .then((product)=>{
-        res.status(201).json(product);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).end();
-      })
-    }
-  });
-});
-
-
-menuRouter.delete('/deleteProduit/:idMenu/:idProduct' , function(req,res){
-  jwt.verify(req.token, 'secretkey', (err) =>{
-    if(err){
-      res.status(403).end('Accès refusé');
-      return;
-    }
-    else{
-      const idProduct = parseInt(req.params.idProduct);
-      const idMenu = parseInt(req.params.idMenu);
-
-      if(idProduct === undefined || idMenu === undefined ){
-          res.status(403).end();
-        return;
-      }
-
-      MenuController.deleteProduct(idMenu,idProduct);
-      res.status(200).end();
-    }
-  });
-});*/
-
 
 logementRouter.delete('/deleteLogement/:idLogement' , function(req,res){
   jwt.verify(req.token, 'secretkey', (err) =>{
