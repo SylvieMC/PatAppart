@@ -15,9 +15,10 @@ function _startServer() {
 
   const app = express();
 
-  var whitelist = ['http://localhost:4200', 'http://127.0.0.1:4200']
+  var whitelist = ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://127.0.0.1:8080', 'http://localhost:8080', undefined]
 var corsOptions = {
   origin: function (origin, callback) {
+    console.log('origin: ', origin);
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
