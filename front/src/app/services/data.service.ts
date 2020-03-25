@@ -16,4 +16,12 @@ export class DataService {
     return this.http.get<HttpResponse<Object>>(this.resourceUrl + '/logements', { observe: 'response' });
   }
 
+  public getAllUtilisateurs(): Observable<HttpResponse<Object>> {
+    return this.http.get<HttpResponse<Object>>(this.resourceUrl + '/utilisateurs', { observe: 'response' });
+  }
+
+  public getAllAnimals(): Observable<HttpResponse<Object>> {
+    return this.http.get<HttpResponse<Object>>(this.resourceUrl + '/animals', { observe: 'response' });
+  }
+
 }

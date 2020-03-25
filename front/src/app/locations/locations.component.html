@@ -1,6 +1,22 @@
 <p>locations works!</p>
-test
-<ul *ngFor="let logement of this.logements">
-  <li>{{logement.adresse}}</li>
-</ul>
 
+
+<div class="mat-card" *ngFor="let logement of this.logementViews">
+  <div class="mat-card-header">
+    <div class="mat-card-avatar example-header-image"></div>
+    <div class="mat-card-header-text">
+      <span class="mat-card-title">{{logement.typeAnimal}} - {{logement.userName}}</span>
+      <span class="mat-card-subtitle">{{logement.code_postal}}, {{logement.adresse}} </span>
+    </div>
+  </div>
+  <img class="mat-card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <div class="mat-card-content">
+    <p>
+      {{logement.description}}
+    </p>
+  </div>
+  <div classe="mat-card-actions">
+    <button mat-button>LIKE</button>
+    <button mat-button>DETAILS</button>
+  </div>
+</div>

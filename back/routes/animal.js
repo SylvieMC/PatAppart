@@ -17,11 +17,13 @@ animalRouter.post('/', function(req, res) {
   const description = req.body.description;
   const date_de_naissance = req.body.date_de_naissance;
   const photo_url = req.body.photo_url;
+  const logement_id = req.body.logement_id;
+  const utilisateur_id = req.body.utilisateur_id;
   if(nom === undefined || type_animal === undefined) {
     res.status(400).end();
     return;
   }
-  const animal = AnimalController.addAnimal(nom, type_animal, race, description, date_de_naissance, photo_url)
+  const animal = AnimalController.addAnimal(nom, type_animal, race, description, date_de_naissance, photo_url,utilisateur_id, logement_id)
   .then((animal) =>{
     console.log(animal);
     res.status(201).json(animal);

@@ -3,14 +3,16 @@ const Animal = ModelIndex.Animal;
 
 const AnimalController = function() {};
 
-AnimalController.addAnimal = function(nom, type_animal, race, description, date_de_naissance, photo_url){
+AnimalController.addAnimal = function(nom, type_animal, race, description, date_de_naissance, photo_url, utilisateur_id, logement_id){
   return Animal.create({
     nom: nom,
     type_animal: type_animal,
     race: race,
     description: description,
     date_de_naissance: date_de_naissance,
-    photo_url: photo_url
+    photo_url: photo_url,
+    utilisateur_id: utilisateur_id,
+    logement_id: logement_id
   })
 };
 

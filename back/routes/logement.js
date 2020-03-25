@@ -18,11 +18,12 @@ logementRouter.post('/', function(req, res) {
   const date_debut = req.body.date_debut;
   const date_fin = req.body.date_fin;
   const photo_url = req.body.photo_url;
+  const utilisateur_id = req.body.utilisateur_id;
   if(adresse === undefined || description === undefined) {
     res.status(400).end();
     return;
   }
-  const logement = LogementController.addLogement(adresse, description, code_postal, departement, date_debut, date_fin, photo_url)
+  const logement = LogementController.addLogement(adresse, description, code_postal, departement, date_debut, date_fin, photo_url, utilisateur_id)
   .then((logement) =>{
     console.log(logement);
     res.status(201).json(logement);

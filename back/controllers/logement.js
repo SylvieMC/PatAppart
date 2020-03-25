@@ -5,7 +5,7 @@ const Op = Sequelize.Op;
 
 const LogementController = function() {};
 
-LogementController.addLogement = function(adresse, description, code_postal, departement, date_debut, date_fin, photo_url){
+LogementController.addLogement = function(adresse, description, code_postal, departement, date_debut, date_fin, photo_url, utilisateur_id){
   return Logement.create({
     adresse: adresse,
     description: description,
@@ -13,7 +13,8 @@ LogementController.addLogement = function(adresse, description, code_postal, dep
     departement: departement,
     date_debut: date_debut,
     date_fin: date_fin,
-    photo_url: photo_url
+    photo_url: photo_url,
+    utilisateur_id: utilisateur_id
   })
 };
 

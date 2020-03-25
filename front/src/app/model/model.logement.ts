@@ -8,5 +8,6 @@ export class Logement {
       public date_debut?: Date,
       public date_fin?: Date,
       public photo_url?: string,
+      public utilisateur_id?: number
   ) {}
 }
