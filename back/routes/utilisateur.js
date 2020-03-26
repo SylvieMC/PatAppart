@@ -12,15 +12,15 @@ utilisateurRouter.use(bodyParser.json());
  */
 utilisateurRouter.post('/', function(req, res) {
   const login = req.body.login;
-  const email = req.body.email;
   const mot_de_passe = req.body.mot_de_passe;
+  const email = req.body.email;
   const description = req.body.description;
   const date_de_naissance = req.body.date_de_naissance;
   if(login === undefined || mot_de_passe === undefined) {
     res.status(400).end();
     return;
   }
-  const utilisateur = UtilisateurController.addUtilisateur(login, email, mot_de_passe, description, date_de_naissance)
+  const utilisateur = UtilisateurController.addUtilisateur(login, mot_de_passe, email, description, date_de_naissance)
   .then((utilisateur) =>{
     console.log(utilisateur);
     res.status(201).json(utilisateur);

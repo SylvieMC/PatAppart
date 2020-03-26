@@ -12,6 +12,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LocationsComponent } from './locations/locations.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { MatButtonModule } from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 
@@ -20,7 +25,8 @@ import { LocationsComponent } from './locations/locations.component';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    LocationsComponent
+    LocationsComponent,
+    InscriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,9 @@ import { LocationsComponent } from './locations/locations.component';
     MatMenuModule,
     MatToolbarModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

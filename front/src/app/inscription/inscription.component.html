@@ -1,0 +1,23 @@
+<form class="container" [formGroup]="registerForm"  (ngSubmit)="createUtilisateur()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Login</mat-label>
+    <input matInput  placeholder="Votre nom d'utilisateur" name="login" formControlName="login">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput placeholder="Votre mot de passe" type="password" name="mot_de_passe" formControlName="mot_de_passe">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Ex. pat@example.com" name="email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Date de naissance</mat-label>
+    <input matInput placeholder="22-11-1997" type="date" value="" name="date_de_naissance" formControlName="date_de_naissance">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Une petite description de votre personne" name="description" formControlName="description"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Valider l'inscription</button>
+</form>
