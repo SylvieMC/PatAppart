@@ -11,28 +11,36 @@ logementRouter.use(bodyParser.json());
  * Create a Logement.
  */
 logementRouter.post('/', function(req, res) {
-  const adresse = req.body.adresse;
-  const description = req.body.description;
-  const code_postal = req.body.code_postal;
-  const departement = req.body.departement;
-  const date_debut = req.body.date_debut;
-  const date_fin = req.body.date_fin;
-  const photo_url = req.body.photo_url;
-  const utilisateur_id = req.body.utilisateur_id;
-  if(adresse === undefined || description === undefined) {
-    res.status(400).end();
-    return;
-  }
-  const logement = LogementController.addLogement(adresse, description, code_postal, departement, date_debut, date_fin, photo_url, utilisateur_id)
-  .then((logement) =>{
-    console.log(logement);
-    res.status(201).json(logement);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).end();
-  })
-
+  const token = req.headers["authorization"]; // Recupération du token dans le header
+  jwt.verify(token, 'secretkey', (err) =>{
+    if(err){ // If token n'est pas valide
+      res.status(403).end('Accès refusé');
+      return;
+    }
+    else{
+      const adresse = req.body.adresse;
+      const description = req.body.description;
+      const code_postal = req.body.code_postal;
+      const departement = req.body.departement;
+      const date_debut = req.body.date_debut;
+      const date_fin = req.body.date_fin;
+      const photo_url = req.body.photo_url;
+      const utilisateur_id = req.body.utilisateur_id;
+      if(adresse === undefined || description === undefined) {
+        res.status(400).end();
+        return;
+      }
+      const logement = LogementController.addLogement(adresse, description, code_postal, departement, date_debut, date_fin, photo_url, utilisateur_id)
+      .then((logement) =>{
+        console.log(logement);
+        res.status(201).json(logement);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).end();
+      })
+      }
+  });
 });
 
 /**

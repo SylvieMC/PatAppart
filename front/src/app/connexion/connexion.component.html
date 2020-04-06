@@ -1,1 +1,11 @@
-<p>connexion works!</p>
+<form class="container" [formGroup]="loginForm"  (ngSubmit)="connexionUtilisateur()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Ex. pat@example.com" name="email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput placeholder="Votre mot de passe" type="password" name="mot_de_passe" formControlName="mot_de_passe">
+  </mat-form-field>
+  <button mat-raised-button color="primary">Se connecter</button>
+</form>

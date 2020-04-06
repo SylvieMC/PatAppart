@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LocationsComponent } from './locations/locations.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { CompteComponent } from './compte/compte.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,14 @@ const routes: Routes = [
   {
     path: 'inscription',
     component: InscriptionComponent
+  },
+  {
+    path: 'connexion',
+    component: ConnexionComponent
+  },
+  {
+    path: 'compte',
+    component: CompteComponent
   },
   {
     path: '',
