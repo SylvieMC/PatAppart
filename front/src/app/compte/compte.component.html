@@ -1,0 +1,36 @@
+<h1>Mon compte</h1>
+<p>
+{{utilisateur.login}}<br/>
+{{utilisateur.email}}<br/>
+{{utilisateur.description}}
+</p>
+<h2>Ajouter un animal</h2>
+<button mat-fab color="primary">+</button>
+<form class="container" [formGroup]="animalForm" (ngSubmit)="createAnimal()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nom</mat-label>
+    <input matInput  placeholder="Son nom" name="nom" formControlName="nom">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Type Animal</mat-label>
+    <input matInput placeholder="Quel animal?" name="type_animal" formControlName="type_animal">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Race</mat-label>
+    <input matInput placeholder="Sa race" name="race" formControlName="race">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Une petite description de votre animal" name="description" formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Date de naissance</mat-label>
+    <input matInput placeholder="22-11-1997" type="date" value="" name="date_de_naissance" formControlName="date_de_naissance">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Ajouter</button>
+</form>
+
+<!--
+  Ici: tableau des animaux de cet utilisateur
+-->
