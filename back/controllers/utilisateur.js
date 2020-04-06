@@ -27,7 +27,7 @@ UtilisateurController.deleteUtilisateur = function(idUtilisateur){
     })
 };
 
-UtilisateurController.updateUtilisateur = function(idUtilisateur, newLogin, newPassword, newEmail, newDescription, newDateDeNaissance) {
+UtilisateurController.updateUtilisateur = function(idUtilisateur, newLogin, newMotDePasse, newEmail, newDescription, newDateDeNaissance) {
   const Utilisateur = Utilisateur.find({
     where:{
       id: idUtilisateur
@@ -40,7 +40,7 @@ UtilisateurController.updateUtilisateur = function(idUtilisateur, newLogin, newP
 
   Utilisateur.updateAttributes({
     login: newLogin,
-    password: newPassword,
+    mot_de_passe: newMotDePasse,
     email: newEmail,
     description: newDescription,
     date_de_naissance: newDateDeNaissance
@@ -69,6 +69,24 @@ UtilisateurController.getAllUtilisateur = function(){
   .catch((err) => {
     console.error(err);
   });
+};
+
+
+UtilisateurController.login = function(email, mot_de_passe){
+  return Utilisateur.find({
+    where : {
+      email : email,
+      mot_de_passe : mot_de_passe
+    }
+  })
+  .then((utilisateur)=>{
+    if(utilisateur){
+      return utilisateur;
+    }
+    else{
+      return null;
+    }
+  })
 };
 
 module.exports = UtilisateurController;
