@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
-import { forkJoin } from 'rxjs';
 import { Utilisateur } from '../model/model.utilisateur';
 import { Animal } from '../model/model.animal';
 
@@ -16,12 +15,18 @@ export class CompteComponent implements OnInit {
   errorMessage: string;
   submitted = false;
   utilisateur: Utilisateur;
+  show: boolean = false;
+  buttonName: any = 'Show';
+  animals: Array<Animal> = [];
+
+  utilisateurId = JSON.parse(localStorage.getItem('utilisateur')).utilisateur.id;
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getCompteUtilisateur();
     this.createForm();
+    this.getAllAnimal();
   }
   private getCompteUtilisateur(): void{
     this.utilisateur = JSON.parse(localStorage.getItem('token')) ? JSON.parse(localStorage.getItem('token')).utilisateur : null;
@@ -55,7 +60,7 @@ export class CompteComponent implements OnInit {
     animal.description = this.animalForm.controls.description.value;
     animal.date_de_naissance = this.animalForm.controls.date_de_naissance.value;
     animal.photo_url = this.animalForm.controls.photo_url.value;
-    animal.utilisateur_id = JSON.parse(localStorage.getItem('utilisateur')).utilisateur.id;
+    animal.utilisateur_id = this.utilisateurId;
 
     console.log('Request to save animal %o', animal);
 
@@ -66,4 +71,29 @@ export class CompteComponent implements OnInit {
         console.log("L'animal n'a pas pu être crée")
       });
   }
+
+  private getAllAnimal(): void {
+      this.dataService.getAllAnimals()
+          .subscribe(response => {
+         this.animals = this.findAnimalsByUtilisateurId(this.utilisateurId, response.body as Array<Animal>);
+       console.table(this.animals);
+    }, error => {
+      console.log('Error during get animals', error);
+    })
+  }
+
+  private findAnimalsByUtilisateurId(utilisateurId: number, animals: Array<Animal>): Array<Animal> {
+      return animals.filter(animal => animal.utilisateur_id === utilisateurId);
+  }
+
+  public toggle(){
+    this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if(this.show)
+      this.buttonName = "-";
+    else
+      this.buttonName = "+";
+  }
 }
+

@@ -5,8 +5,8 @@
 {{utilisateur.description}}
 </p>
 <h2>Ajouter un animal</h2>
-<button mat-fab color="primary">+</button>
-<form class="container" [formGroup]="animalForm" (ngSubmit)="createAnimal()">
+<button mat-fab color="primary" (click)="toggle()" >{{buttonName}}</button>
+<form class="container" [formGroup]="animalForm" (ngSubmit)="createAnimal()" *ngIf="show">
   <mat-form-field class="example-full-width">
     <mat-label>Nom</mat-label>
     <input matInput  placeholder="Son nom" name="nom" formControlName="nom">
@@ -35,6 +35,8 @@
   <button mat-raised-button color="primary">Ajouter</button>
 </form>
 
-<!--
-  Ici: tableau des animaux de cet utilisateur
--->
+<ul *ngFor="let animal of animals">
+  <li>{{animal.nom}}</li>
+  <li>{{animal.type_animal}}</li>
+  <li>{{animal.race}}</li>
+</ul>
