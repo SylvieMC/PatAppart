@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Utilisateur } from '../model/model.utilisateur';
 import { Connexion } from '../model/model.connexion';
+import { Animal } from '../model/model.animal';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +38,11 @@ export class DataService {
         this.resourceUrl + '/utilisateurs/connexion', connexion,
         { observe: 'response' });
    }
+
+   public animal(animal: Animal): Observable<HttpResponse<Object>> {
+    return this.http.post<HttpResponse<Object>>(
+        this.resourceUrl + '/animals', animal,
+        { observe: 'response' });
+   }
+
 }
