@@ -1,3 +1,5 @@
+require ("dotenv").config();
+
 const express = require('express');
 const ModelIndex = require('./models');
 const RouteManager = require('./routes');
@@ -14,8 +16,8 @@ ModelIndex
 function _startServer() {
 
   const app = express();
-
-  var whitelist = ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://127.0.0.1:8080', 'http://localhost:8080', undefined]
+  const port = process.env.PORT;
+  var whitelist = ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://127.0.0.1:8080', 'http://localhost:8080', 'http://localhost:9999', 'http://127.0.0.1:9999', undefined, 'https://patappart.sylvie-cassim.com', 'http://patappart.sylvie-cassim.com']
 var corsOptions = {
   origin: function (origin, callback) {
     console.log('origin: ', origin);
@@ -31,8 +33,8 @@ var corsOptions = {
 
   RouteManager.attach(app);
 
-  app.listen(8080, function() {
-    console.log('Server started on 8080...');
+  app.listen(port, function() {
+    console.log('Server started on port...');
   })
   ;
 }
