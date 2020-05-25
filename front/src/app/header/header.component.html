@@ -1,12 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="header-content">
   <mat-toolbar-row>
-    <span>Pat'appart</span>
+    <img class="logo" src="assets/img/logo.png">
+    <span class="title">Pat'appart</span>
     <span class="example-spacer"></span>
     <a mat-button routerLink="/home">Accueil</a>
-    <button mat-button [matMenuTriggerFor]="belowMenu" *ngIf="this.authService.isAuthenticated()">Locations</button>
+    <button mat-button [matMenuTriggerFor]="belowMenu" *ngIf="this.authService.isAuthenticated()">Services</button>
     <mat-menu #belowMenu="matMenu" xPosition="after">
-      <button mat-menu-item><span routerLink="/locations"> Rechercher un hébergement</span></button>
-      <button mat-menu-item>Proposer une offre</button>
+      <button mat-menu-item><span routerLink="/locations">Rechercher une location</span></button>
+      <button mat-menu-item><span routerLink="/addlocation">Proposer une offre de location</span></button>
     </mat-menu>
     <a mat-button routerLink="/" *ngIf="this.authService.isAuthenticated()">Petsitters</a>
     <a mat-button routerLink="/inscription" *ngIf="!this.authService.isAuthenticated()">Inscription</a>

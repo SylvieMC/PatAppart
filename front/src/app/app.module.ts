@@ -12,12 +12,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LocationsComponent } from './locations/locations.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { CompteComponent } from './compte/compte.component';
+import { AddlocationComponent } from './addlocation/addlocation.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { FooterComponent } from './footer/footer.component';
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -29,7 +36,9 @@ export function tokenGetter() {
     LocationsComponent,
     InscriptionComponent,
     ConnexionComponent,
-    CompteComponent
+    CompteComponent,
+    AddlocationComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +47,13 @@ export function tokenGetter() {
     MatMenuModule,
     MatToolbarModule,
     HttpClientModule,
+    MatIconModule,
     MatButtonModule,
+    MatCardModule,
+    FlexLayoutModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatTabsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

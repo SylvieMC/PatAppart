@@ -1,22 +1,23 @@
-<p>locations works!</p>
-
-
-<div class="mat-card" *ngFor="let logement of this.logementViews">
-  <div class="mat-card-header">
-    <div class="mat-card-avatar example-header-image"></div>
-    <div class="mat-card-header-text">
-      <span class="mat-card-title">{{logement.typeAnimal}} - {{logement.userName}}</span>
-      <span class="mat-card-subtitle">{{logement.code_postal}}, {{logement.adresse}} </span>
-    </div>
-  </div>
-  <img class="mat-card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <div class="mat-card-content">
-    <p>
-      {{logement.description}}
-    </p>
-  </div>
-  <div classe="mat-card-actions">
-    <button mat-button>LIKE</button>
-    <button mat-button>DETAILS</button>
-  </div>
+<div class="title">
+  <h1 class="main-title">Animaux ayant besoins d'une garde</h1>
+  <h2>Voici une liste de locations disponible en échange d'une garde</h2>
+</div>
+<div fxLayout="row wrap" fxLayoutGap="30px"  fxLayoutAlign="center center">
+  <mat-card class="mat-card flex-me" fxFlex="0 1 calc(33.3% - 32px)" *ngFor="let logement of this.logementViews">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{logement.typeAnimal}} - {{logement.userName}}</mat-card-title>
+      <mat-card-subtitle>{{logement.code_postal}}, {{logement.adresse}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        {{logement.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>DETAILS</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

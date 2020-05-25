@@ -1,4 +1,8 @@
-<form class="container" [formGroup]="registerForm"  (ngSubmit)="createUtilisateur()">
+<div class="title">
+  <h1 class="main-title">Créer un compte</h1>
+  <h2>Inscrivez-vous maintenant</h2>
+</div>
+<form class="inscription-form container" [formGroup]="registerForm"  (ngSubmit)="createUtilisateur()">
   <mat-form-field class="example-full-width">
     <mat-label>Login</mat-label>
     <input matInput  placeholder="Votre nom d'utilisateur" name="login" formControlName="login">
@@ -19,5 +23,7 @@
     <mat-label>Description</mat-label>
     <textarea matInput placeholder="Une petite description de votre personne" name="description" formControlName="description"></textarea>
   </mat-form-field>
-  <button mat-raised-button color="primary">Valider l'inscription</button>
+  <p class="button-width">
+    <button mat-raised-button color="primary">Valider</button>
+  </p>
 </form>

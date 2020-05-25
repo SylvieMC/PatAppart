@@ -1,4 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+  font-family: 'Archivo Black';
+  src: url(/assets/fonts/ArchivoBlack-Regular.ttf) format("truetype");
+  font-weight:300;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url(/assets/fonts/Montserrat-Regular.ttf) format("truetype");
+  font-weight:300;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(/assets/fonts/Montserrat-ExtraBold.ttf);
+  font-weight: bold;
+}
+html, body {
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+body { margin: 0; font-family: "Montserrat", "Archivo Black", sans-serif; }
+.page-title { font-family: "Archivo Black"!important; }

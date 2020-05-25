@@ -1,1 +1,17 @@
-<p>home works!</p>
+<section class="home-content">
+  <div class="content-container">
+      <div class="box-container">
+        <h1 class="page-title">Partagez votre passion pour les animaux.</h1>
+        <h3>Rencontrez d'autres propriétaires d'animaux de compagnie.</h3>
+        <div class="offline" *ngIf="!this.authService.isAuthenticated()">
+          <p><a routerLink="/connexion" mat-flat-button color="accent">Connectez-vous</a></p>
+          <p>ou</p>
+          <p><a routerLink="/inscription" mat-flat-button color="primary">Inscrivez-vous</a></p>
+        </div>
+        <div class="online" *ngIf="this.authService.isAuthenticated()">
+          <p><a routerLink="/locations" mat-flat-button color="primary">Proposez vos service de Petsitter</a></p>
+          <p><a routerLink="/addlocation" mat-flat-button color="primary">Faites une requête de garde d'animal</a></p>
+        </div>
+      </div>
+  </div>
+</section>

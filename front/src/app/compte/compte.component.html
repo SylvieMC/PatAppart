@@ -1,42 +1,80 @@
-<h1>Mon compte</h1>
-<p>
-{{utilisateur.login}}<br/>
-{{utilisateur.email}}<br/>
-{{utilisateur.description}}
-</p>
-<h2>Ajouter un animal</h2>
-<button mat-fab color="primary" (click)="toggle()" >{{buttonName}}</button>
-<form class="container" [formGroup]="animalForm" (ngSubmit)="createAnimal()" *ngIf="show">
-  <mat-form-field class="example-full-width">
-    <mat-label>Nom</mat-label>
-    <input matInput  placeholder="Son nom" name="nom" formControlName="nom">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Type Animal</mat-label>
-    <input matInput placeholder="Quel animal?" name="type_animal" formControlName="type_animal">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Race</mat-label>
-    <input matInput placeholder="Sa race" name="race" formControlName="race">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Description</mat-label>
-    <textarea matInput placeholder="Une petite description de votre animal" name="description" formControlName="description"></textarea>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Date de naissance</mat-label>
-    <input matInput placeholder="22-11-1997" type="date" value="" name="date_de_naissance" formControlName="date_de_naissance">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Photo URL</mat-label>
-    <input matInput placeholder="Sa photo" name="photo_url" formControlName="photo_url">
-  </mat-form-field>
+<div class="container">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Mon profil">
+      <div class="mat-tab-body-wrapper">
+        <div class="profile">
+            <mat-form-field  appearance="outline" class="example-full-width">
+              <mat-label>Login</mat-label>
+              <input matInput disabled value="{{utilisateur.login}}">
+            </mat-form-field>
+            <mat-form-field  appearance="outline" class="example-full-width">
+              <mat-label>Mot de passe</mat-label>
+              <input matInput type="password" disabled value="{{utilisateur.mot_de_passe}}">
+            </mat-form-field>
+            <mat-form-field  appearance="outline" class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" disabled value="{{utilisateur.email}}">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Description</mat-label>
+              <textarea matInput disabled value="{{utilisateur.description}}"></textarea>
+            </mat-form-field>
+        <button mat-fab color="primary" class="edit-profile" aria-label="Edit profile">
+          <mat-icon>create</mat-icon>
+        </button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Mes compagnons">
+      <div class="mat-tab-body-wrapper" fxLayout="row wrap" fxLayoutGap="30px"  fxLayoutAlign="center center">
+        <mat-card class="mat-card flex-me" fxFlex="0 1 calc(33.3% - 32px)" *ngFor="let animal of animals">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{animal.nom}}, {{animal.date_de_naissance}}</mat-card-title>
+            <mat-card-subtitle>{{animal.type_animal}}, {{animal.race}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p>
+              {{animal.description}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>EDITER</button>
+            <button mat-button>SUPPRIMER</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Ajouter un animal">
+      <form class="add-animal container" [formGroup]="animalForm" (ngSubmit)="createAnimal()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput  placeholder="Son nom" name="nom" formControlName="nom">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Type Animal</mat-label>
+          <input matInput placeholder="Quel animal?" name="type_animal" formControlName="type_animal">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Race</mat-label>
+          <input matInput placeholder="Sa race" name="race" formControlName="race">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Une petite description de votre animal" name="description" formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput placeholder="22-11-1997" type="date" value="" name="date_de_naissance" formControlName="date_de_naissance">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Photo URL</mat-label>
+          <input matInput placeholder="Sa photo" name="photo_url" formControlName="photo_url">
+        </mat-form-field>
+        <br/>
+        <button mat-raised-button color="primary">Ajouter</button>
+      </form>
+    </mat-tab>
+  </mat-tab-group>
 
-  <button mat-raised-button color="primary">Ajouter</button>
-</form>
-
-<ul *ngFor="let animal of animals">
-  <li>{{animal.nom}}</li>
-  <li>{{animal.type_animal}}</li>
-  <li>{{animal.race}}</li>
-</ul>

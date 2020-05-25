@@ -1,0 +1,53 @@
+.container {
+  padding:0 20px;
+}
+
+.profile {
+  text-align: center;
+  padding-bottom: 50px;
+}
+.mat-tab-body-wrapper {
+  margin: 20px!important;
+  padding: 30px;
+}
+.add-animal {
+  margin: 20px!important;
+  text-align: center;
+  padding: 30px 0;
+}
+.add-animal-form {
+  min-width: 150px;
+  /*max-width: 500px;*/
+  width: 100%;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.example-full-width {
+  width: 500px;
+  padding: 20px 10px;
+}
+
+.button-width {
+  width: 500px;
+  padding: 20px 10px;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+}
+.container {
+  margin: 0 auto;
+}
+.mat-card {
+  max-width: 400px;
+}
+.flex-me {
+  display: inline-flex;
+  flex-flow: row wrap;
+  margin: 10px;
+}
+.edit-profile {
+  margin: 15px;
+  position: absolute;
+  right: 0;
+}

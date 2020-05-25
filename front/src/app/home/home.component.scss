@@ -1,0 +1,28 @@
+.title {
+  font-family: "Archivo Black";
+}
+.home-content {
+  font-family: "Montserrat";
+  min-width: 100%;
+  min-height: 100%;
+  height: 95vh;
+  min-height: 95vh;
+  background-image: url('/assets/img/ows_157782178985657.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.offline, .online {
+  padding-top: 20px;
+}
+.box-container {
+  padding-top: 20vh;
+}
+.content-container {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 90vh;
+  width: 20%;
+  padding: 20px;
+}
+

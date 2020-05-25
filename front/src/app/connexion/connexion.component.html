@@ -1,11 +1,19 @@
-<form class="container" [formGroup]="loginForm"  (ngSubmit)="connexionUtilisateur()">
-  <mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="Ex. pat@example.com" name="email" formControlName="email">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Mot de passe</mat-label>
-    <input matInput placeholder="Votre mot de passe" type="password" name="mot_de_passe" formControlName="mot_de_passe">
-  </mat-form-field>
-  <button mat-raised-button color="primary">Se connecter</button>
-</form>
+<section class="connexion-content">
+  <div class="title">
+    <h1 class="main-title">Se connecter</h1>
+    <h2>Connectez-vous avec votre adresse e-mail pour continuer</h2>
+  </div>
+  <form class="connexion-form container" [formGroup]="loginForm"  (ngSubmit)="connexionUtilisateur()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Ex. pat@example.com" name="email" formControlName="email">
+    </mat-form-field>
+    <br/>
+    <mat-form-field class="example-full-width">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput placeholder="Votre mot de passe" type="password" name="mot_de_passe" formControlName="mot_de_passe">
+    </mat-form-field>
+    <br/>
+    <button mat-raised-button color="primary">Valider</button>
+  </form>
+</section>
