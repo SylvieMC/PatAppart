@@ -15,8 +15,6 @@ export class CompteComponent implements OnInit {
   errorMessage: string;
   submitted = false;
   utilisateur: Utilisateur;
-  show: boolean = false;
-  buttonName: any = 'Show';
   animals: Array<Animal> = [];
 
   utilisateurId = JSON.parse(localStorage.getItem('utilisateur')).utilisateur.id;
@@ -84,16 +82,6 @@ export class CompteComponent implements OnInit {
 
   private findAnimalsByUtilisateurId(utilisateurId: number, animals: Array<Animal>): Array<Animal> {
       return animals.filter(animal => animal.utilisateur_id === utilisateurId);
-  }
-
-  public toggle(){
-    this.show = !this.show;
-
-    // CHANGE THE NAME OF THE BUTTON.
-    if(this.show)
-      this.buttonName = "-";
-    else
-      this.buttonName = "+";
   }
 }
 
