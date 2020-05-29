@@ -34,7 +34,7 @@ var corsOptions = {
   RouteManager.attach(app);
 
   app.listen(port, function() {
-    console.log('Server started on port...');
+    console.log('Server started on port : %o', port);
   })
   ;
 }

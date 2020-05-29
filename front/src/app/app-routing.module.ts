@@ -5,6 +5,7 @@ import { LocationsComponent } from './locations/locations.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { CompteComponent } from './compte/compte.component';
+import { AddlocationComponent } from './addlocation/addlocation.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'compte',
     component: CompteComponent
+  },
+  {
+    path: 'addlocation',
+    component: AddlocationComponent
   },
   {
     path: '',

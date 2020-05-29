@@ -1,0 +1,46 @@
+<section class="add-location-content">
+  <div class="title">
+    <h1 class="main-title">Proposer une offre de location</h1>
+    <h2>Afin que l'on garde votre animal de compagnie</h2>
+  </div>
+  <form class="add-location-form container" [formGroup]="logementForm"  (ngSubmit)="createLogement()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Adresse</mat-label>
+    <textarea matInput placeholder="Votre adresse" name="adresse" formControlName="adresse"></textarea>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Une petite description de votre location" name="description" formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Code Postal</mat-label>
+    <input matInput placeholder="Votre code postal" name="code_postal" formControlName="code_postal">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Departement</mat-label>
+    <input matInput placeholder="Votre departement" name="departement" formControlName="departement">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Date début</mat-label>
+    <input matInput placeholder="05-12-2020" type="date" value="" name="date_debut" formControlName="date_debut">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Date fin</mat-label>
+    <input matInput placeholder="20-01-2020" type="date" value="" name="date_fin" formControlName="date_fin">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Animal</mat-label>
+    <mat-select>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Photo URL</mat-label>
+    <input matInput placeholder="La photo du logement" name="photo_url" formControlName="photo_url">
+  </mat-form-field>
+  <button mat-raised-button color="primary">Ajouter</button>
+</form>
+</section>
