@@ -6,6 +6,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { CompteComponent } from './compte/compte.component';
 import { AddlocationComponent } from './addlocation/addlocation.component';
+import { EditanimalComponent } from './editanimal/editanimal.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
+  },
+  {
+    path: 'editAnimal',
+    component: EditanimalComponent
   }
 ];
 

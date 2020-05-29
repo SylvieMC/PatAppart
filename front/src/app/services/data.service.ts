@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Utilisateur } from '../model/model.utilisateur';
@@ -39,10 +39,36 @@ export class DataService {
         { observe: 'response' });
    }
 
-   public animal(animal: Animal): Observable<HttpResponse<Object>> {
+   public createAnimal(animal: Animal): Observable<HttpResponse<Object>> {
     return this.http.post<HttpResponse<Object>>(
         this.resourceUrl + '/animals', animal,
         { observe: 'response' });
    }
 
+   public updateAnimal(animal: Animal): Observable<HttpResponse<Object>> {
+    return this.http.put<HttpResponse<Object>>(
+        this.resourceUrl + '/animals', animal,
+        { observe: 'response' });
+   }
+
+   public getAnimalById(animalId: number): Observable<HttpResponse<Object>> {
+    return this.http.get<HttpResponse<Object>>(
+        this.resourceUrl + '/animals/' + animalId,
+        { observe: 'response' });
+   }
+
+   public deleteAnimalById(animalId: number): Observable<HttpResponse<Object>> {
+
+    const token = this.getToken();
+    let headers = new HttpHeaders();
+    headers = headers.append('token', token);
+
+    return this.http.delete<HttpResponse<Object>>(
+        this.resourceUrl + '/animals/' + animalId,
+        { headers: headers, observe: 'response' });
+   }
+
+   private getToken() : string {
+    return JSON.parse(localStorage.getItem('token')) ? JSON.parse(localStorage.getItem('token')).token : null;
+   }
 }
