@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './connexion/connexion.component';
@@ -52,6 +53,7 @@ export function tokenGetter() {
     MatCardModule,
     FlexLayoutModule,
     MatInputModule,
+    MatSelectModule,
     ReactiveFormsModule,
     MatTabsModule,
     JwtModule.forRoot({
