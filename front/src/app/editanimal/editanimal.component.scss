@@ -1,0 +1,30 @@
+.title {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+.main-title {
+  font-family: "Archivo Black";
+}
+.container {
+  margin: 0 auto;
+}
+
+.edit-animal-form {
+  min-width: 150px;
+  /*max-width: 500px;*/
+  width: 100%;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.example-full-width {
+  width: 500px;
+  padding: 20px 10px;
+}
+
+.button-width {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+}

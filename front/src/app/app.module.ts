@@ -25,6 +25,7 @@ import { CompteComponent } from './compte/compte.component';
 import { AddlocationComponent } from './addlocation/addlocation.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FooterComponent } from './footer/footer.component';
+import { EditanimalComponent } from './editanimal/editanimal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -39,7 +40,8 @@ export function tokenGetter() {
     ConnexionComponent,
     CompteComponent,
     AddlocationComponent,
-    FooterComponent
+    FooterComponent,
+    EditanimalComponent
   ],
   imports: [
     BrowserModule,

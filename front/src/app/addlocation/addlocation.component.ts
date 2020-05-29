@@ -60,7 +60,7 @@ export class AddlocationComponent implements OnInit {
 
     console.log('Request to save animal %o', logement);
 
-    this.dataService.animal(logement)
+    this.dataService.createAnimal(logement)
       .subscribe(data => {
         console.log("La requete a été crée")
       }, error => {

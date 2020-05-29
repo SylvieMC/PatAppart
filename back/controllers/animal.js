@@ -31,26 +31,24 @@ AnimalController.deleteAnimal = function(idAnimal){
 };
 
 AnimalController.updateAnimal = function(idAnimal, newNom, newTypeAnimal, newRace, newDescription, newDateDeNaissance, newPhotoUrl) {
-  const Animal = Animal.find({
-    where:{
-      id: idAnimal
-    }
-  });
 
-  if(Animal === undefined){
-    return;
-  }
 
-  Animal.updateAttributes({
+  return Animal.update({
     nom: newNom,
     type_animal: newTypeAnimal,
     race: newRace,
     description: newDescription,
     date_de_naissance: newDateDeNaissance,
     photo_url: newPhotoUrl
+  },
+  {
+    where:
+    {
+      id: idAnimal
+    }
   });
 
-  return Animal;
+
 };
 
 AnimalController.getAnimalById = function(AnimalId){

@@ -62,7 +62,7 @@ export class CompteComponent implements OnInit {
 
     console.log('Request to save animal %o', animal);
 
-    this.dataService.animal(animal)
+    this.dataService.createAnimal(animal)
       .subscribe(data => {
         console.log("L'animal a été crée")
       }, error => {
@@ -82,6 +82,15 @@ export class CompteComponent implements OnInit {
 
   private findAnimalsByUtilisateurId(utilisateurId: number, animals: Array<Animal>): Array<Animal> {
       return animals.filter(animal => animal.utilisateur_id === utilisateurId);
+  }
+
+  public deleteAnimalById(animalId: number): void {
+    this.dataService.deleteAnimalById(animalId)
+    .subscribe(animalResponse => {
+      console.log(animalResponse);
+    }, error => {
+      console.error(error);
+    });
   }
 }
 
