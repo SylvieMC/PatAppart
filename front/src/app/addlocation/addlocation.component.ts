@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgModel, Validators, ValidationErrors } from '@angular/forms';
 import { DataService } from '../services/data.service';
 import { Logement } from '../model/model.logement';
 import { Animal } from '../model/model.animal';
@@ -18,10 +18,13 @@ export class AddlocationComponent implements OnInit {
 
   utilisateurId = JSON.parse(localStorage.getItem('utilisateur')).utilisateur.id;
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+     private dataService: DataService) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.getAnimals();
   }
 
   public createForm(){
@@ -33,8 +36,8 @@ export class AddlocationComponent implements OnInit {
       departement: ['', [Validators.required]],
       date_debut: ['', [Validators.required]],
       date_fin: ['', [Validators.required]],
-      animal: ['', [Validators.required]],
-      photo_url: ['', []]
+      photo_url: ['', []],
+      list_animals: ['', []],
     };
 
     this.logementForm = this.formBuilder.group(target);
@@ -43,10 +46,11 @@ export class AddlocationComponent implements OnInit {
     this.errorMessage = null;
     this.submitted = true;
 
+debugger
     if (this.logementForm.invalid) {
       return;
     }
-
+debugger
     const logement = new Logement();
     logement.adresse = this.logementForm.controls.adresse.value;
     logement.description = this.logementForm.controls.description.value;
@@ -56,7 +60,6 @@ export class AddlocationComponent implements OnInit {
     logement.date_debut = this.logementForm.controls.date_debut.value;
     logement.date_fin = this.logementForm.controls.date_fin.value;
     logement.photo_url = this.logementForm.controls.photo_url.value;
-    //logement.animal_id = this.animalId;
 
     console.log('Request to save animal %o', logement);
 
@@ -64,8 +67,15 @@ export class AddlocationComponent implements OnInit {
       .subscribe(data => {
         console.log("La requete a été crée")
       }, error => {
-        console.log("La requete n'a pas pu être crée")
+        console.log("La requete n'a pas pu être crée, %o", error)
       });
   }
 
+  public getAnimals(): void {
+    this.dataService.getAllAnimals()
+    .subscribe(data => {
+       const animals: Array<Animal> =  data.body as Array<Animal>;
+       this.animals = animals.filter(a => a.utilisateur_id === this.utilisateurId)
+    })
+  }
 }

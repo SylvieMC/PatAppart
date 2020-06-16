@@ -96,6 +96,31 @@ utilisateurRouter.get('/:idUtilisateur' , function(req,res){
   });
 });
 /**
+ * Update an animal.
+ */
+utilisateurRouter.put('/', function(req, res) {
+  const id = req.body.id;
+  const login = req.body.login;
+  const mot_de_passe = req.body.mot_de_passe;
+  const email = req.body.email;
+  const description = req.body.description;
+  const date_de_naissance = req.body.date_de_naissance;
+  if(login === undefined || mot_de_passe === undefined || email === undefined) {
+    res.status(400).end();
+    return;
+  }
+  const utilisateur = UtilisateurController.updateUtilisateur(id, login, mot_de_passe, email, description, date_de_naissance)
+  .then((utilisateur) =>{
+    console.log(utilisateur);
+    res.status(200).json(utilisateur);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).end();
+  })
+
+});
+/**
  * Delete Utilisateur by Id
  */
 utilisateurRouter.delete('/:idUtilisateur' , function(req,res){

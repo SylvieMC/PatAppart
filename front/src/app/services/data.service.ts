@@ -32,6 +32,16 @@ export class DataService {
         this.resourceUrl + '/utilisateurs', utilisateur,
         { observe: 'response' });
    }
+   public updateUtilisateur(utilisateur: Utilisateur): Observable<HttpResponse<Object>> {
+    return this.http.put<HttpResponse<Object>>(
+        this.resourceUrl + '/utilisateurs', utilisateur,
+        { observe: 'response' });
+   }
+   public getUtilisateurById(utilisateurId: number): Observable<HttpResponse<Object>> {
+    return this.http.get<HttpResponse<Object>>(
+        this.resourceUrl + '/utilisateurs/' + utilisateurId,
+        { observe: 'response' });
+   }
 
    public connexion(connexion: Connexion): Observable<HttpResponse<Object>> {
     return this.http.post<HttpResponse<Object>>(

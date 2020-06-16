@@ -26,6 +26,10 @@ import { AddlocationComponent } from './addlocation/addlocation.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FooterComponent } from './footer/footer.component';
 import { EditanimalComponent } from './editanimal/editanimal.component';
+import { EditprofilComponent } from './editprofil/editprofil.component';
+import { PetsittersComponent } from './petsitters/petsitters.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ContactComponent } from './contact/contact.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -41,7 +45,10 @@ export function tokenGetter() {
     CompteComponent,
     AddlocationComponent,
     FooterComponent,
-    EditanimalComponent
+    EditanimalComponent,
+    EditprofilComponent,
+    PetsittersComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +61,7 @@ export function tokenGetter() {
     MatButtonModule,
     MatCardModule,
     FlexLayoutModule,
+    MatExpansionModule,
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,

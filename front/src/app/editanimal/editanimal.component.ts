@@ -70,9 +70,9 @@ export class EditanimalComponent implements OnInit {
 
     this.dataService.updateAnimal(animal)
       .subscribe(data => {
-        console.log("L'animal a été crée")
+        console.log("L'animal a été édité")
       }, error => {
-        console.log("L'animal n'a pas pu être crée")
+        console.log("L'animal n'a pas pu être édité")
       });
   }
 

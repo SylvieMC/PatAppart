@@ -7,6 +7,9 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { CompteComponent } from './compte/compte.component';
 import { AddlocationComponent } from './addlocation/addlocation.component';
 import { EditanimalComponent } from './editanimal/editanimal.component';
+import { EditprofilComponent } from './editprofil/editprofil.component';
+import { PetsittersComponent } from './petsitters/petsitters.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 const routes: Routes = [
@@ -35,6 +38,14 @@ const routes: Routes = [
     component: AddlocationComponent
   },
   {
+    path: 'petsitters',
+    component: PetsittersComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -42,6 +53,10 @@ const routes: Routes = [
   {
     path: 'editAnimal',
     component: EditanimalComponent
+  },
+  {
+    path: 'editProfil',
+    component: EditprofilComponent
   }
 ];
 

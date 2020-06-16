@@ -28,25 +28,19 @@ UtilisateurController.deleteUtilisateur = function(idUtilisateur){
 };
 
 UtilisateurController.updateUtilisateur = function(idUtilisateur, newLogin, newMotDePasse, newEmail, newDescription, newDateDeNaissance) {
-  const Utilisateur = Utilisateur.find({
-    where:{
-      id: idUtilisateur
-    }
-  });
 
-  if(Utilisateur === undefined){
-    return;
-  }
-
-  Utilisateur.updateAttributes({
+  return Utilisateur.update({
     login: newLogin,
     mot_de_passe: newMotDePasse,
     email: newEmail,
     description: newDescription,
     date_de_naissance: newDateDeNaissance
+  },
+  {
+    where:{
+      id: idUtilisateur
+    }
   });
-
-  return Utilisateur;
 };
 
 UtilisateurController.getUtilisateurById = function(UtilisateurId){

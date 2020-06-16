@@ -54,7 +54,7 @@ export class LocationsComponent implements OnInit {
 
         const logementView = {
           id: logement.id,
-          adresse: logement.utilisateur_id,
+          adresse: logement.adresse,
           code_postal: logement.code_postal,
           departement: logement.departement,
           description: logement.description,

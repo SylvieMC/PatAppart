@@ -4,10 +4,10 @@
       <div class="mat-tab-body-wrapper" fxLayout="row wrap" fxLayoutGap="30px"  fxLayoutAlign="center center">
         <mat-card class="mat-card flex-me" fxFlex="0 1 calc(33.3% - 32px)" *ngFor="let animal of animals">
           <mat-card-header>
-            <mat-card-title>{{animal.nom}}, {{animal.type_animal}}</mat-card-title>
-            <mat-card-subtitle>{{animal.date_de_naissance}}, {{animal.race}}</mat-card-subtitle>
+            <mat-card-title><b>{{animal.nom}}</b></mat-card-title>
+            <mat-card-subtitle>{{animal.type_animal}} {{animal.race}}, {{animal.date_de_naissance}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="{{animal.photo_url}}" alt="Photo of a Shiba Inu">
+          <img mat-card-image src="{{animal.photo_url}}" alt="{{animal.nom}}">
           <mat-card-content>
             <p>
               {{animal.description}}
@@ -53,23 +53,27 @@
     <mat-tab label="Mes informations">
       <div class="mat-tab-body-wrapper">
         <div class="profile">
-            <mat-form-field  appearance="outline" class="example-full-width">
+            <mat-form-field class="example-full-width">
               <mat-label>Login</mat-label>
               <input matInput disabled value="{{utilisateur.login}}">
             </mat-form-field>
-            <mat-form-field  appearance="outline" class="example-full-width">
+            <mat-form-field class="example-full-width">
               <mat-label>Mot de passe</mat-label>
               <input matInput type="password" disabled value="{{utilisateur.mot_de_passe}}">
             </mat-form-field>
-            <mat-form-field  appearance="outline" class="example-full-width">
+            <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input matInput type="email" disabled value="{{utilisateur.email}}">
             </mat-form-field>
-            <mat-form-field appearance="outline" class="example-full-width">
+            <mat-form-field class="example-full-width">
+              <mat-label>Date de naissance</mat-label>
+              <input matInput disabled value="{{utilisateur.date_de_naissance}}">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
               <mat-label>Description</mat-label>
               <textarea matInput disabled value="{{utilisateur.description}}"></textarea>
             </mat-form-field>
-        <button mat-fab color="primary" class="edit-profile" aria-label="Edit profile">
+        <button [routerLink]="['/editProfil']" [queryParams]="{id:utilisateur.id}" mat-fab color="primary" class="edit-profile" aria-label="Edit profile">
           <mat-icon>create</mat-icon>
         </button>
         </div>

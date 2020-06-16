@@ -28,12 +28,13 @@
     <mat-label>Date fin</mat-label>
     <input matInput placeholder="20-01-2020" type="date" value="" name="date_fin" formControlName="date_fin">
   </mat-form-field>
-
+<br/>
   <mat-form-field appearance="fill">
     <mat-label>Animal</mat-label>
-    <mat-select>
-      <mat-option value="option1">Option 1</mat-option>
-      <mat-option value="option2">Option 2</mat-option>
+    <mat-select formControlName="photo_url">
+      <mat-option *ngFor="let animal of animals" [value]="animal">
+        {{animal.nom}}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 
