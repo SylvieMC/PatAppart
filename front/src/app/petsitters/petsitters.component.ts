@@ -9,22 +9,25 @@ import { Utilisateur } from '../model/model.utilisateur';
   styleUrls: ['./petsitters.component.scss']
 })
 export class PetsittersComponent implements OnInit {
+
   utilisateurs: Array<Utilisateur> = [];
   panelOpenState = false;
 
-  constructor(
-    private dataService: DataService
-  ) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getAllUtilisateurs();
   }
+
   private getAllUtilisateurs(): void {
+
     forkJoin(
       this.dataService.getAllUtilisateurs()
     ).subscribe(response => {
          this.utilisateurs = response[0].body as Array<Utilisateur>;
        console.table(this.utilisateurs);
     })
-}
+
+  }
+
 }

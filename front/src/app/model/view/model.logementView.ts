@@ -8,6 +8,7 @@ export interface LogementView {
    date_fin: Date;
    photo_url: string;
    userName: string;
+   userEmail: string;
    typeAnimal: string;
 
 }

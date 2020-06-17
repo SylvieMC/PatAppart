@@ -4,6 +4,7 @@ const Animal = ModelIndex.Animal;
 const AnimalController = function() {};
 
 AnimalController.addAnimal = function(nom, type_animal, race, description, date_de_naissance, photo_url, utilisateur_id, logement_id){
+
   return Animal.create({
     nom: nom,
     type_animal: type_animal,
@@ -14,9 +15,11 @@ AnimalController.addAnimal = function(nom, type_animal, race, description, date_
     utilisateur_id: utilisateur_id,
     logement_id: logement_id
   })
+
 };
 
 AnimalController.deleteAnimal = function(idAnimal){
+
   return Animal.destroy({
     where:{
       id: idAnimal
@@ -28,10 +31,10 @@ AnimalController.deleteAnimal = function(idAnimal){
     .catch((err) => {
       console.error(err);
     })
+
 };
 
 AnimalController.updateAnimal = function(idAnimal, newNom, newTypeAnimal, newRace, newDescription, newDateDeNaissance, newPhotoUrl) {
-
 
   return Animal.update({
     nom: newNom,
@@ -48,10 +51,10 @@ AnimalController.updateAnimal = function(idAnimal, newNom, newTypeAnimal, newRac
     }
   });
 
-
 };
 
 AnimalController.getAnimalById = function(AnimalId){
+
   return Animal.find({
     where: {
       id: AnimalId
@@ -64,13 +67,16 @@ AnimalController.getAnimalById = function(AnimalId){
   .catch((error) => {
     console.error(err);
   });
+
 };
 
 AnimalController.getAllAnimal = function(){
+
   return Animal.findAll()
   .catch((err) => {
     console.error(err);
   });
+
 };
 
 module.exports = AnimalController;

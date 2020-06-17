@@ -28,20 +28,20 @@
     <mat-label>Date fin</mat-label>
     <input matInput placeholder="20-01-2020" type="date" value="" name="date_fin" formControlName="date_fin">
   </mat-form-field>
-<br/>
+  <br/>
   <mat-form-field appearance="fill">
     <mat-label>Animal</mat-label>
-    <mat-select formControlName="photo_url">
-      <mat-option *ngFor="let animal of animals" [value]="animal">
+    <mat-select formControlName="list_animals">
+      <mat-option *ngFor="let animal of animals" [value]="animal.nom">
         {{animal.nom}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-
   <mat-form-field class="example-full-width">
     <mat-label>Photo URL</mat-label>
-    <input matInput placeholder="La photo du logement" name="photo_url" formControlName="photo_url">
+    <input matInput placeholder="La photo du logement" [(ngModel)]="photo" name="photo_url" formControlName="photo_url">
   </mat-form-field>
   <button mat-raised-button color="primary">Ajouter</button>
 </form>
 </section>
+

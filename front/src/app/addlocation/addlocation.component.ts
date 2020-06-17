@@ -4,6 +4,7 @@ import { DataService } from '../services/data.service';
 import { Logement } from '../model/model.logement';
 import { Animal } from '../model/model.animal';
 import { Utilisateur } from '../model/model.utilisateur';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-addlocation',
@@ -11,16 +12,20 @@ import { Utilisateur } from '../model/model.utilisateur';
   styleUrls: ['./addlocation.component.scss']
 })
 export class AddlocationComponent implements OnInit {
+
   logementForm: FormGroup;
   errorMessage: string;
   submitted = false;
   animals: Array<Animal> = [];
-
+  utilisateur: Utilisateur;
   utilisateurId = JSON.parse(localStorage.getItem('utilisateur')).utilisateur.id;
+  photo = 'https://patappart.sylvie-cassim.com/assets/img/default.jpg';
 
   constructor(
     private formBuilder: FormBuilder,
-     private dataService: DataService) { }
+    private dataService: DataService,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -39,18 +44,21 @@ export class AddlocationComponent implements OnInit {
       photo_url: ['', []],
       list_animals: ['', []],
     };
-
     this.logementForm = this.formBuilder.group(target);
+
   }
+
   public createLogement(){
+
     this.errorMessage = null;
     this.submitted = true;
 
-debugger
     if (this.logementForm.invalid) {
-      return;
+      this._snackBar.open('La demande de garde n\'a pas pu être créée.', '', {
+        duration: 2000,
+      });
     }
-debugger
+
     const logement = new Logement();
     logement.adresse = this.logementForm.controls.adresse.value;
     logement.description = this.logementForm.controls.description.value;
@@ -61,21 +69,41 @@ debugger
     logement.date_fin = this.logementForm.controls.date_fin.value;
     logement.photo_url = this.logementForm.controls.photo_url.value;
 
-    console.log('Request to save animal %o', logement);
+    const animal_name: string = this.logementForm.controls.list_animals.value;
+    const animal = this.animals.find(a => a.nom === animal_name);
 
-    this.dataService.createAnimal(logement)
-      .subscribe(data => {
-        console.log("La requete a été crée")
-      }, error => {
-        console.log("La requete n'a pas pu être crée, %o", error)
+    this.dataService.createLogement(logement)
+    .subscribe(logementResponse => {
+      const logementResult: Logement = logementResponse.body as Logement;
+      const logementId: number = logementResult.id;
+      animal.logement_id = logementId;
+      this.updateAnimal(animal);
+      this._snackBar.open('La demande de garde à été créée!', '', {
+        duration: 2000,
       });
+    }, error => {
+      console.log('error : %o', error);
+    })
+
   }
 
   public getAnimals(): void {
+
     this.dataService.getAllAnimals()
     .subscribe(data => {
-       const animals: Array<Animal> =  data.body as Array<Animal>;
-       this.animals = animals.filter(a => a.utilisateur_id === this.utilisateurId)
+      const animals: Array<Animal> =  data.body as Array<Animal>;
+      this.animals = animals.filter(a => a.utilisateur_id === this.utilisateurId)
     })
+
   }
+
+  private updateAnimal(animal: Animal): void {
+
+    this.dataService.updateAnimal(animal)
+    .subscribe(data => {
+      console.log(data);
+    });
+
+  }
+
 }

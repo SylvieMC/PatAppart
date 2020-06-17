@@ -11,8 +11,10 @@ logementRouter.use(bodyParser.json());
  * Create a Logement.
  */
 logementRouter.post('/', function(req, res) {
-  const token = req.headers["authorization"]; // Recupération du token dans le header
-  jwt.verify(token, 'secretkey', (err) =>{
+  const token = req.headers["token"];
+  console.log('req %o ', req.headers['token']);
+  // Recupération du token dans le header
+  jwt.verify(req.headers['token'], 'secretkey', (err) =>{
     if(err){ // If token n'est pas valide
       res.status(403).end('Accès refusé');
       return;

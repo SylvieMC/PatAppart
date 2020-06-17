@@ -1,7 +1,6 @@
 module.exports = function(sequelize , DataTypes){
 
     const Animal = sequelize.define('Animal' , {
-
         id: {
           type: DataTypes.BIGINT,
           primaryKey: true,

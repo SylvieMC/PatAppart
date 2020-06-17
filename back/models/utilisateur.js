@@ -1,7 +1,6 @@
 module.exports = function(sequelize , DataTypes){
 
     const Utilisateur = sequelize.define('Utilisateur' , {
-
         id: {
           type: DataTypes.BIGINT,
           primaryKey: true,

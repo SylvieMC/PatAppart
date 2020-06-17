@@ -11,15 +11,18 @@ utilisateurRouter.use(bodyParser.json());
  * Create an Utilisateur.
  */
 utilisateurRouter.post('/', function(req, res) {
+
   const login = req.body.login;
   const mot_de_passe = req.body.mot_de_passe;
   const email = req.body.email;
   const description = req.body.description;
   const date_de_naissance = req.body.date_de_naissance;
+
   if(login === undefined || mot_de_passe === undefined) {
     res.status(400).end();
     return;
   }
+
   const utilisateur = UtilisateurController.addUtilisateur(login, mot_de_passe, email, description, date_de_naissance)
   .then((utilisateur) =>{
     console.log(utilisateur);
@@ -31,11 +34,12 @@ utilisateurRouter.post('/', function(req, res) {
   })
 
 });
+
 /**
  * Login by email and mot_de_passe
  */
-
 utilisateurRouter.post('/connexion', function(req, res){
+
   const email = req.body.email;
   const mot_de_passe = req.body.mot_de_passe;
 
@@ -57,12 +61,14 @@ utilisateurRouter.post('/connexion', function(req, res){
     console.error(err);
     res.status(500).end();
   })
+
 });
 
 /**
  * Get all Utilisateurs
  */
 utilisateurRouter.get('/',function(req,res){
+
   UtilisateurController.getAllUtilisateur()
     .then((utilisateursResponse) =>{
       res.status(200).json(utilisateursResponse);
@@ -71,12 +77,12 @@ utilisateurRouter.get('/',function(req,res){
       console.error(err);
       res.status(500).end();
     })
+
 });
 
 /**
  * Get Utilisateur by Id
  */
-
 utilisateurRouter.get('/:idUtilisateur' , function(req,res){
 
   const idUtilisateur = req.params.idUtilisateur;
@@ -94,17 +100,21 @@ utilisateurRouter.get('/:idUtilisateur' , function(req,res){
   .catch((err)=>{
     console.error(err);
   });
+
 });
+
 /**
  * Update an animal.
  */
 utilisateurRouter.put('/', function(req, res) {
+
   const id = req.body.id;
   const login = req.body.login;
   const mot_de_passe = req.body.mot_de_passe;
   const email = req.body.email;
   const description = req.body.description;
   const date_de_naissance = req.body.date_de_naissance;
+
   if(login === undefined || mot_de_passe === undefined || email === undefined) {
     res.status(400).end();
     return;
@@ -120,10 +130,12 @@ utilisateurRouter.put('/', function(req, res) {
   })
 
 });
+
 /**
  * Delete Utilisateur by Id
  */
 utilisateurRouter.delete('/:idUtilisateur' , function(req,res){
+
   jwt.verify(req.token, 'secretkey', (err) =>{
     if(err){
       res.status(403).end('Accès refusé');
@@ -139,6 +151,7 @@ utilisateurRouter.delete('/:idUtilisateur' , function(req,res){
       res.status(200).end();
     }
   });
+
 });
 
 module.exports = utilisateurRouter;

@@ -11,6 +11,7 @@ import { Animal } from '../model/model.animal';
   templateUrl: './locations.component.html',
   styleUrls: ['./locations.component.scss']
 })
+
 export class LocationsComponent implements OnInit {
 
   logements: Array<Logement> = [];
@@ -18,9 +19,7 @@ export class LocationsComponent implements OnInit {
   animals: Array<Animal> = [];
   logementViews: Array<LogementView> = [];
 
-  constructor(
-    private dataService: DataService
-  ) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getAllLogements();
@@ -32,22 +31,22 @@ export class LocationsComponent implements OnInit {
         this.dataService.getAllUtilisateurs(),
         this.dataService.getAllAnimals()
       ).subscribe(response => {
-           this.logements = response[0].body as Array<Logement>;
-           this.utilisateurs = response[1].body as Array<Utilisateur>;
-           this.animals = response[2].body as Array<Animal>;
-         console.table(this.logements);
+          this.logements = response[0].body as Array<Logement>;
+          this.utilisateurs = response[1].body as Array<Utilisateur>;
+          this.animals = response[2].body as Array<Animal>;
+          console.table(this.logements);
           this.logementViews = this.mapToLogementsView(this.logements, this.utilisateurs, this.animals);
       })
   }
 
-
   private mapToLogementsView(logements: Array<Logement>, utilisateurs: Array<Utilisateur>, animals: Array<Animal>): Array<LogementView> {
-     const logementsView = [];
+
+    const logementsView = [];
 
      logements.forEach(logement => {
         const utilisateur = this.findUtilisateur(utilisateurs, logement.utilisateur_id);
-
         const typeAnimal = utilisateur ? this.findTypeAnimal(logement.id, utilisateur.id) : '';
+
         if (!utilisateur) {
           console.log('L\'utilisateur n\'existe pas');
         }
@@ -62,22 +61,26 @@ export class LocationsComponent implements OnInit {
           date_fin: logement.date_fin,
           photo_url: logement.photo_url,
           userName: utilisateur && utilisateur.login ? utilisateur.login : '',
+          userEmail: utilisateur && utilisateur.email ? utilisateur.email : '',
           typeAnimal: typeAnimal ? typeAnimal : ''
-        };
+          };
           logementsView.push(logementView);
       });
-
       return logementsView;
+
   }
 
   private findUtilisateur(utilisateurs: Array<Utilisateur>, utilisateurId: number): Utilisateur {
+
     return utilisateurs.find(utilisateur => utilisateur.id === utilisateurId);
+
   }
 
   private findTypeAnimal(logementId: number, utilisateurId): string {
+
     const animal = this.animals.find(animal => animal.logement_id === logementId && animal.utilisateur_id === utilisateurId);
     return animal ? animal.type_animal : null;
-  }
 
+  }
 
 }
