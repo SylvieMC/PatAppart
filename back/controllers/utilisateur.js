@@ -4,6 +4,7 @@ const Utilisateur = ModelIndex.Utilisateur;
 const UtilisateurController = function() {};
 
 UtilisateurController.addUtilisateur = function(login, mot_de_passe, email, description, date_de_naissance){
+
   return Utilisateur.create({
     login: login,
     mot_de_passe: mot_de_passe,
@@ -11,9 +12,11 @@ UtilisateurController.addUtilisateur = function(login, mot_de_passe, email, desc
     description: description,
     date_de_naissance: date_de_naissance
   })
+
 };
 
 UtilisateurController.deleteUtilisateur = function(idUtilisateur){
+
   return Utilisateur.destroy({
     where:{
       id: idUtilisateur
@@ -25,6 +28,7 @@ UtilisateurController.deleteUtilisateur = function(idUtilisateur){
     .catch((err) => {
       console.error(err);
     })
+
 };
 
 UtilisateurController.updateUtilisateur = function(idUtilisateur, newLogin, newMotDePasse, newEmail, newDescription, newDateDeNaissance) {
@@ -41,9 +45,11 @@ UtilisateurController.updateUtilisateur = function(idUtilisateur, newLogin, newM
       id: idUtilisateur
     }
   });
+
 };
 
 UtilisateurController.getUtilisateurById = function(UtilisateurId){
+
   return Utilisateur.find({
     where: {
       id: UtilisateurId
@@ -56,17 +62,21 @@ UtilisateurController.getUtilisateurById = function(UtilisateurId){
   .catch((error) => {
     console.error(err);
   });
+
 };
 
 UtilisateurController.getAllUtilisateur = function(){
+
   return Utilisateur.findAll()
   .catch((err) => {
     console.error(err);
   });
+
 };
 
 
 UtilisateurController.login = function(email, mot_de_passe){
+
   return Utilisateur.find({
     where : {
       email : email,
@@ -81,6 +91,7 @@ UtilisateurController.login = function(email, mot_de_passe){
       return null;
     }
   })
+
 };
 
 module.exports = UtilisateurController;

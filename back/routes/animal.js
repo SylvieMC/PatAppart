@@ -11,6 +11,7 @@ animalRouter.use(bodyParser.json());
  * Create an animal.
  */
 animalRouter.post('/', function(req, res) {
+
   const nom = req.body.nom;
   const type_animal = req.body.type_animal;
   const race = req.body.race;
@@ -34,10 +35,12 @@ animalRouter.post('/', function(req, res) {
   })
 
 });
+
 /**
  * Update an animal.
  */
 animalRouter.put('/', function(req, res) {
+
   const id = req.body.id;
   const nom = req.body.nom;
   const type_animal = req.body.type_animal;
@@ -60,6 +63,7 @@ animalRouter.put('/', function(req, res) {
   })
 
 });
+
 /**
  * Get all animals
  */
@@ -81,12 +85,10 @@ animalRouter.get('/',function(req,res){
 animalRouter.get('/:idAnimal' , function(req,res){
 
   const idAnimal = req.params.idAnimal;
-
   if(idAnimal === undefined) {
     res.status(400).end();
     return;
   }
-
   AnimalController
   .getAnimalById(idAnimal)
   .then((animal) =>{
@@ -95,9 +97,11 @@ animalRouter.get('/:idAnimal' , function(req,res){
   .catch((err)=>{
     console.error(err);
   });
+
 });
 
 animalRouter.delete('/:idAnimal' , function(req,res){
+
   console.log('req %o ', req.headers['token']);
   jwt.verify(req.headers['token'], 'secretkey', (err) =>{
     if(err){
@@ -114,6 +118,7 @@ animalRouter.delete('/:idAnimal' , function(req,res){
       res.status(200).end();
     }
   });
+
 });
 
 module.exports = animalRouter;

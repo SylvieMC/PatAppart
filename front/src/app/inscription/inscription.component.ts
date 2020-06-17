@@ -2,22 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { Utilisateur } from '../model/model.utilisateur';
 import { DataService } from '../services/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
   styleUrls: ['./inscription.component.scss']
 })
+
 export class InscriptionComponent implements OnInit {
+
   registerForm: FormGroup;
   errorMessage: string;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private dataService: DataService,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
   }
+
   private createForm() {
 
     const target = {
@@ -27,15 +35,19 @@ export class InscriptionComponent implements OnInit {
       date_de_naissance: ['', [Validators.required]],
       description: ['', []],
     };
-
     this.registerForm = this.formBuilder.group(target);
+
   }
+
   public createUtilisateur(): void {
+
     this.errorMessage = null;
     this.submitted = true;
 
     if (this.registerForm.invalid) {
-      return;
+      this._snackBar.open('Votre compte n\'a pas pu être créé.', '', {
+        duration: 2000,
+      });
     }
 
     const utilisateur = new Utilisateur();
@@ -47,10 +59,13 @@ export class InscriptionComponent implements OnInit {
 
     this.dataService.createUtilisateur(utilisateur)
       .subscribe(data => {
-        console.log("L'utilisateur a été crée")
+        this._snackBar.open('Votre compte a été créé!', '', {
+          duration: 2000,
+        });
       }, error => {
-        console.log("L'utilisateur n'a pas pu être crée")
+        console.log("Votre compte n'a pas pu être créé.")
       });
+
   }
 
 }

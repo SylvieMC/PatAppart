@@ -28,8 +28,10 @@ import { FooterComponent } from './footer/footer.component';
 import { EditanimalComponent } from './editanimal/editanimal.component';
 import { EditprofilComponent } from './editprofil/editprofil.component';
 import { PetsittersComponent } from './petsitters/petsitters.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ContactComponent } from './contact/contact.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -66,6 +68,8 @@ export function tokenGetter() {
     MatSelectModule,
     ReactiveFormsModule,
     MatTabsModule,
+    MatSnackBarModule,
+    MatDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

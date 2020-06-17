@@ -44,7 +44,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Photo URL</mat-label>
-          <input matInput placeholder="Sa photo" name="photo_url" formControlName="photo_url">
+          <input matInput [(ngModel)]="photo" placeholder="Sa photo" name="photo_url" formControlName="photo_url">
         </mat-form-field>
         <br/>
         <button mat-raised-button color="primary">Ajouter</button>
@@ -73,7 +73,7 @@
               <mat-label>Description</mat-label>
               <textarea matInput disabled value="{{utilisateur.description}}"></textarea>
             </mat-form-field>
-        <button [routerLink]="['/editProfil']" [queryParams]="{id:utilisateur.id}" mat-fab color="primary" class="edit-profile" aria-label="Edit profile">
+            <button [routerLink]="['/editProfil']" [queryParams]="{id:utilisateur.id}" mat-fab color="primary" class="edit-profile" aria-label="Edit profile">
           <mat-icon>create</mat-icon>
         </button>
         </div>

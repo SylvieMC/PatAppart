@@ -6,5 +6,6 @@ export class Utilisateur {
       public email?: string,
       public description?: string,
       public date_de_naissance?: Date,
+      public animal_id?: Date,
   ) {}
 }

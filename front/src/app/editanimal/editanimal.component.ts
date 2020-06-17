@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { DataService } from '../services/data.service';
 import { Animal } from '../model/model.animal';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -12,30 +13,30 @@ import { ActivatedRoute } from '@angular/router';
 
 })
 export class EditanimalComponent implements OnInit {
+
   animalEditForm: FormGroup;
   errorMessage: string;
   submitted = false;
-
   utilisateurId = JSON.parse(localStorage.getItem('utilisateur')).utilisateur.id;
   animalId: number;
   animal: Animal;
 
-
   constructor(
     private formBuilder: FormBuilder,
-     private dataService: DataService,
-     private route: ActivatedRoute
-     ) {
+    private dataService: DataService,
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute
+  ) {
       this.route.queryParams.subscribe(params => {
         this.animalId = params['id'];
-
-    });
-     }
+      });
+    }
 
   ngOnInit(): void {
     this.createForm();
     this.getAnimalById(this.animalId);
   }
+
   private createForm() {
 
     const target = {
@@ -47,13 +48,18 @@ export class EditanimalComponent implements OnInit {
       photo_url: ['', []],
     };
     this.animalEditForm = this.formBuilder.group(target);
+
   }
+
   public editAnimal(): void {
+
     this.errorMessage = null;
     this.submitted = true;
 
     if (this.animalEditForm.invalid) {
-      return;
+      this._snackBar.open('Cet animal de compagnie n\'a pas pu être édité...', '', {
+        duration: 2000,
+      });
     }
 
     const animal = new Animal();
@@ -70,13 +76,19 @@ export class EditanimalComponent implements OnInit {
 
     this.dataService.updateAnimal(animal)
       .subscribe(data => {
-        console.log("L'animal a été édité")
+        this._snackBar.open('Cet animal de compagnie a été édité!', '', {
+          duration: 2000,
+        });
       }, error => {
-        console.log("L'animal n'a pas pu être édité")
+        this._snackBar.open('Cet animal de compagnie animal n\'a pas pu être édité...', '', {
+          duration: 2000,
+        });
       });
+
   }
 
   private getAnimalById(animalId: number): void {
+
       this.dataService.getAnimalById(animalId)
       .subscribe(animalResponse => {
          this.animal = animalResponse.body as Animal;
@@ -89,6 +101,7 @@ export class EditanimalComponent implements OnInit {
       }, error => {
         console.error(error);
       });
+
   }
 
 }

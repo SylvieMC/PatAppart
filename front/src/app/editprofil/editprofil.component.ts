@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../services/data.service';
 import { Utilisateur } from '../model/model.utilisateur';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editprofil',
@@ -10,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./editprofil.component.scss']
 })
 export class EditprofilComponent implements OnInit {
+
   profilEditForm: FormGroup;
   errorMessage: string;
   submitted = false;
@@ -19,12 +21,12 @@ export class EditprofilComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService,
+    private _snackBar: MatSnackBar,
     private route: ActivatedRoute
     ) {
-     this.route.queryParams.subscribe(params => {
-       this.utilisateurId = params['id'];
-
-   });
+        this.route.queryParams.subscribe(params => {
+        this.utilisateurId = params['id'];
+    });
   }
 
   ngOnInit(): void {
@@ -42,14 +44,18 @@ export class EditprofilComponent implements OnInit {
       date_de_naissance: ['', [Validators.required]]
     };
     this.profilEditForm = this.formBuilder.group(target);
+
   }
 
   public editProfil(): void {
+
     this.errorMessage = null;
     this.submitted = true;
 
     if (this.profilEditForm.invalid) {
-      return;
+      this._snackBar.open('Votre compte n\'a pas pu être édité.', '', {
+        duration: 2000,
+      });
     }
 
     const utilisateur = new Utilisateur();
@@ -64,13 +70,19 @@ export class EditprofilComponent implements OnInit {
 
     this.dataService.updateUtilisateur(utilisateur)
       .subscribe(data => {
-        console.log("L'utilisateur à été édité")
+        this._snackBar.open('Votre compte à été édité!', '', {
+          duration: 2000,
+        });
       }, error => {
-        console.log("L'utilisateur n'a pas pu être édité")
+          this._snackBar.open('Votre compte n\'a pas pu être édité.', '', {
+            duration: 2000,
+          });
       });
+
   }
 
   private getUtilisateurById(utilisateurId: number): void {
+
     this.dataService.getUtilisateurById(this.utilisateurId)
     .subscribe(utilisateurResponse => {
        this.utilisateur = utilisateurResponse.body as Utilisateur;
@@ -82,5 +94,7 @@ export class EditprofilComponent implements OnInit {
     }, error => {
       console.error(error);
     });
-}
+
+  }
+
 }

@@ -6,6 +6,7 @@ const Op = Sequelize.Op;
 const LogementController = function() {};
 
 LogementController.addLogement = function(adresse, description, code_postal, departement, date_debut, date_fin, photo_url, utilisateur_id){
+
   return Logement.create({
     adresse: adresse,
     description: description,
@@ -16,9 +17,11 @@ LogementController.addLogement = function(adresse, description, code_postal, dep
     photo_url: photo_url,
     utilisateur_id: utilisateur_id
   })
+
 };
 
 LogementController.deleteLogement = function(idLogement){
+
   return Logement.destroy({
     where:{
       id: idLogement
@@ -30,9 +33,11 @@ LogementController.deleteLogement = function(idLogement){
     .catch((err) => {
       console.error(err);
     })
+
 };
 
-LogementController.updateLogement = function(idLogement, newLogementname, newPassword, newEmail) {
+LogementController.updateLogement = function(idLogement, newDescription, newAdresse, newCodePostal, newDepartement, newDateDebut, newDateFin, newPhotoUrl) {
+
   const Logement = Logement.find({
     where:{
       id: idLogement
@@ -54,9 +59,11 @@ LogementController.updateLogement = function(idLogement, newLogementname, newPas
   });
 
   return Logement;
+
 };
 
 LogementController.getLogementById = function(LogementId){
+
   return Logement.findOne({
     where: {
       id: LogementId
@@ -69,9 +76,11 @@ LogementController.getLogementById = function(LogementId){
   .catch((error) => {
     console.error(err);
   });
+
 };
 
 LogementController.findByCodePostal = function(codepostal){
+
   return Logement.findOne({
     where: {
       code_postal: {
@@ -86,13 +95,17 @@ LogementController.findByCodePostal = function(codepostal){
   .catch((error) => {
     console.error(error);
   });
+
 };
+
 LogementController.getAllLogement = function(){
+
    console.log('ok');
   return Logement.findAll()
   .catch((err) => {
     console.error(err);
   });
+
 };
 
 module.exports = LogementController;

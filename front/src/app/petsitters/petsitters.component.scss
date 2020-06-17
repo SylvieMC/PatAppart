@@ -10,7 +10,6 @@
   margin: 0 auto;
   padding: 0 50px 50px 50px;
 }
-
 .flex-me {
   display: inline-flex;
   flex-flow: row wrap;
@@ -20,12 +19,10 @@
 .example-headers-align .mat-expansion-panel-header-description {
   flex-basis: 0;
 }
-
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
 }
-
 .example-headers-align .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
